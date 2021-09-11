@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <video id="video" width="500" height="500" controls></video>
+        <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+        <script>
+            const video = document.getElementById('video');
+            setTimeout(function () {
+                const videoSrc = '/videos/edddd.m3u8';
+                var config = {
+                    fragLoadingTimeOut: 10000,
+                    fragLoadingMaxRetry: 3, //  config는 기본값을 가지고 있으므로 사용하지 않아도 무방함
+                };
+                if (Hls.isSupported()) {
+                    const hls = new Hls(config);
+
+                    hls.loadSource(videoSrc);
+                    hls.attachMedia(video);
+                    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                        video.play();
+                    });
+                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                    video.src = videoSrc;
+                    video.addEventListener('loadedmetadata', () => {
+                        video.play();
+                    });
+                }
+            }, 2000);
+        </script>
+    </body>
+</html>
