@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <video
+            src="http://localhost:3000/streaming"
+            width="500"
+            height="500"
+            controls
+            preload="auto"
+        ></video>
+    </body>
+    <style>
+        video::-webkit-media-controls {
+            visibility: hidden;
+        }
+
+        video::-webkit-media-controls-enclosure {
+            visibility: visible;
+        }
+    </style>
+</html>
